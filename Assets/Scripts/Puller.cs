@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Puller : EnvironmentalObject
 {
+    [Header("Puller Options")]
+    public bool constrainX;
+    public bool constrainY;
     public float pullSpeed;
     public Vector2 endPoint;
 
@@ -41,6 +44,18 @@ public class Puller : EnvironmentalObject
     {
         obj.MoveInDirection(-1 * pullerFrameInput, pullSpeed);
 
-        pullerFrameInput = obj.MoveTowards(endPoint, pullSpeed);
+        Vector2 realisedEndPoint = endPoint;
+
+        if (constrainX)
+        {
+            realisedEndPoint.x = obj.transform.position.x;
+        }
+
+        if (constrainY)
+        {
+            realisedEndPoint.y = obj.transform.position.y;
+        }
+
+        pullerFrameInput = obj.MoveTowards(realisedEndPoint, pullSpeed);
     }
 }

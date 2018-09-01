@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class EnemyLineOfSight : MonoBehaviour {
 
+    private bool playerSeen;
     public float range = 1f;
-    [Range(0f, 90f)]
+    [Range(0f, 180f)]
     public float angle = 45f;
     public float samplesPerDegree = 1f;
 
@@ -55,8 +56,22 @@ public class EnemyLineOfSight : MonoBehaviour {
 
                 if(hitInfo.collider.GetComponent<Player>() != null)
                 {
+
                     Debug.Log("I can see the player!!!");
+                    if(hitInfo.collider.GetComponent<Player>().Detectable == false)
+                    {
+                        continue;
+                    }
                     //hitInfo.collider.GetComponent<Player>()
+
+
+                    //point for juice
+                    
+                    if (playerSeen == false)
+                    {
+                        playerSeen = true;
+                        LevelManager.Instance.GameOver();
+                    }
                 }
 
             } else {

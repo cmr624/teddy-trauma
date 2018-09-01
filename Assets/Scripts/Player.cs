@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MovableObject {
 
+    public bool Detectable { get; private set; }
+
 	protected override void Start ()
     {
         base.Start();
@@ -17,6 +19,9 @@ public class Player : MovableObject {
         MoveInDirection(-1 * lastFrameInput);
 
         Vector2 frameInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        Detectable = frameInput.magnitude != 0;
+
         MoveInDirection(frameInput);
         lastFrameInput = frameInput;
 	}
