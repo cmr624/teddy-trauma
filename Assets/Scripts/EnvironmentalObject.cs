@@ -10,8 +10,6 @@ public abstract class EnvironmentalObject : PathableObject {
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entrance");
-
         if (collision.gameObject.GetComponent<MovableObject>() != null)
         {
             movables.Add(collision.gameObject.GetComponent<MovableObject>());
@@ -20,7 +18,6 @@ public abstract class EnvironmentalObject : PathableObject {
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exit");
         if (collision.gameObject.GetComponent<MovableObject>() != null)
         {
             movables.Remove(collision.gameObject.GetComponent<MovableObject>());

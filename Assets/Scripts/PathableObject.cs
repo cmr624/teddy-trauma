@@ -5,10 +5,13 @@ using UnityEngine;
 public class PathableObject : MovableObject {
 
     public Vector2[] path;
+
     private bool willMove;
     private int pathIndex;
 
-	protected override void Start ()
+    private Vector2 pathableFrameInput;
+
+    protected override void Start ()
     {
         base.Start();
         if (path.Length > 0)
@@ -19,7 +22,7 @@ public class PathableObject : MovableObject {
                 willMove = true;
                 pathIndex = 1;
 
-                MoveTowards(path[1]);
+                pathableFrameInput = MoveTowards(path[1]);
             }
         }
     }
@@ -30,8 +33,12 @@ public class PathableObject : MovableObject {
 
         if (willMove && Vector2.Distance(transform.position, path[pathIndex]) < 0.01f)
         {
-            MoveTowards(path[pathIndex]);
             pathIndex = (pathIndex + 1) % path.Length;
+
+            MoveInDirection(-1 * pathableFrameInput);
+
+            pathableFrameInput = MoveTowards(path[pathIndex]);
+            
         }
     }
 }

@@ -26,7 +26,6 @@ public class MovableObject : MonoBehaviour {
     public Vector2 MoveInDirection(Vector2 dir, float? movementSpeed = null)
     {
         Vector2 addMove = dir.normalized * (movementSpeed.HasValue ? movementSpeed.Value : this.speed);
-        Debug.Log("Addmovw" + addMove);
         rb.velocity = new Vector2(addMove.x + rb.velocity.x, addMove.y + rb.velocity.y);
         return addMove;
     }

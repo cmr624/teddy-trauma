@@ -30,18 +30,17 @@ public class Puller : EnvironmentalObject
 
         if(mo != null)
         {
-            Debug.Log("last frame input: " + lastFrameInput);
-            mo.MoveInDirection(-1 * lastFrameInput, pullSpeed);
+            mo.MoveInDirection(-1 * pullerFrameInput, pullSpeed);
         }
 
-        lastFrameInput = Vector2.zero;
+        pullerFrameInput = Vector2.zero;
     }
 
-    private Vector2 lastFrameInput;
+    private Vector2 pullerFrameInput;
     protected override void ActOnMovableObject(MovableObject obj)
     {
-        obj.MoveInDirection(-1 * lastFrameInput, pullSpeed);
+        obj.MoveInDirection(-1 * pullerFrameInput, pullSpeed);
 
-        lastFrameInput = obj.MoveTowards(endPoint, pullSpeed);
+        pullerFrameInput = obj.MoveTowards(endPoint, pullSpeed);
     }
 }
