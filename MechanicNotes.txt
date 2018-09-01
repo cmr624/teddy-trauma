@@ -1,0 +1,161 @@
+Mechanics
+
+Objective - Escape
+- Get from the entrance of a room to the exit of the room.
+
+Movement
+- W/A/S/D
+- Action button
+
+Enemies
+- Some can move
+- Some will be stationary
+- Can see the player in a cone in the way that they're facing
+	- Cone is defined by an angle and a range
+- If player is passive, and the "pick up / janitor, etc." class of enemy sees player, the enemy pick up and move the player along its predetermined path.
+- When you're seen, you game over.
+
+Player Obstacles
+- Walls
+- Environmental Hazards
+	- Some can move
+		- Some walls can be hazards
+	- Some don't
+- Can hold an item, potentially consequences if you don't move, if you do, etc.
+	- Key, collectible, etc.
+
+Level Design
+- Entrance
+- Exit
+- Sub-objectives to solve the puzzle
+	- Get a key
+
+Player Verbs
+- Move (WASD)
+- Pushed
+	- Walls can push
+- Flung - something in the environment (jump pad, etc.)
+	- Can control yourself in the air
+	- Fast, go over hazards
+- Carried
+	- Conveyor belt
+	- Has a well defined X, Y path
+
+User Story
+	Player launches the game, and loads into a main menu. They hit "New Game." They boot into level 1-1. For some level, they start at an entrance and progress to an exit. There are enemies which can see the player when the player is actively moving. If the player is seen, the game is over or "reset." The game is over if an environmental hazard catches a player. The player can be passively moved by objects in the environment and are not detectable in the passively moved state. 
+
+UML-ing
+	Player - simple player class, can move, be animated, etc.
+
+	Main Menu - New Game button, quit, (and/or credits)
+
+	Level - There is some level class that defines the layout of the level. 
+		- They start as an entrance, and progress to an exit.
+
+	Enemies - Enemy class, pathfinding, they interact with the player in 2 major ways
+		- If you're actively moving, GAME OVER
+		- If you're passive, possibly interact
+
+	Enemies can see - cast some fucking rays.
+
+	Player actively moving - the player is changing their state from "active" to "passive"
+		- Active - is defined by a movement WASD
+		- Passive - is defined by no input
+
+	Key - an item that can progress the level in some way.
+
+	Game over - there is a manager determining if the condition has been met to "game over" (lives, some sort of health)
+
+	Environmental hazard - will call GAME OVER
+
+	Environmental objects - an object can interact with the player with movement or "flinging"
+
+Class
+/*
+NAME
+ATTRIBUTES
+METHODS
+*/
+	- NAME: LevelObject
+	- ATTRIBUTES
+		- StartPos: vec2
+		- CurrentPos: vec2
+	- METHODS
+		- Reset(): currentPos = StartPos;
+
+	- NAME: Player
+	- ATTRIBUTES
+		- Detectable: bool
+			- Right now, can you be seen
+		- Speed: float
+
+		- /\ HAS A KEY /\
+	- METHODS
+		- Move: Input()
+		- Interact
+			- Can interact with keys
+		- GameOver()
+	- Relationship
+		- Subclass of LevelObject
+
+	- NAME: Key
+	- ATTRIBUTES
+		- StartPosition: Vector2
+		- CurrentPosition: Vector2
+	- METHODS
+		- Unlock() 
+		- bool CheckUnlock()
+	- RELATIONAL
+		- A key NEEDS to have ONE door.
+		- Subclass of MovingLevelObject
+
+	- NAME: Door
+	- ATTRIBUTES
+		- Open: bool
+	- METHODS
+		- ToggleOpen()
+
+	- NAME: Enemy (BIG BOI)
+	- ATTRIBUTES
+		- LOSRange: float
+		- LOSAngle: float
+	- METHODS
+		- Catch(player)
+		- Move(path)
+		- See() - an enemy can identify different player states (PLAYER.DETECTABLE)
+
+	- NAME: Janitor Enemy
+	- ATTRIBUTES
+	- METHODS
+		- PickUp(player)
+	- RELATIONSHIP - a subclass of the enemy class
+
+	- NAME: Environmental Object
+	- ATTRIBUTES
+	- METHODS
+		- ActOnPlayer(player) - abstract method
+	- RELATIONSHIP 
+		- a subclass of the LevelObject class
+
+	- NAME: Interactive Object
+	- ATTRIBUTES
+	- METHODS
+		- ActOnPlayer(player) - abstract method
+	- RELATIONSHIP 
+		- a subclass of the LevelObject class
+
+	- NAME: Level Manager
+	- ATTRIBUTES
+		- 
+	- METHODS
+		- LoadLevel
+
+
+
+
+
+
+
+
+
+
