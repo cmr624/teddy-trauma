@@ -31,7 +31,7 @@ public class PathableObject : MovableObject {
     {
         base.Update();
 
-        if (willMove && Vector2.Distance(transform.position, path[pathIndex]) < 0.01f)
+        if (willMove && Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
         {
             pathIndex = (pathIndex + 1) % path.Length;
 
