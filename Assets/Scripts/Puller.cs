@@ -58,4 +58,7 @@ public class Puller : EnvironmentalObject
 
         pullerFrameInput = obj.MoveTowards(realisedEndPoint, pullSpeed);
     }
+    public void reverse(){
+        pullSpeed = -pullSpeed;
+    }
 }

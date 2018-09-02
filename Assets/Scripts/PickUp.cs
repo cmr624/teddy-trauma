@@ -14,5 +14,14 @@ public class PickUp : MonoBehaviour {
             hasKey = true;
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag=="Switch"){
+            Debug.Log("1");
+            if(Input.GetKeyUp(KeyCode.Space)){
+                Debug.Log("2");
+                GameObject switchLever = collision.gameObject;
+                switchLever.GetComponent<Lever>().interactWithSwitch();
+
+            }
+        }
     }
 }

@@ -43,7 +43,8 @@ public class EnemyLineOfSight : MonoBehaviour {
 
         for (int i = 0; i < lineOfSightPoints.Count; i++)
         {
-            lineRenderer.SetPosition(i + 1, lineOfSightPoints[i]);
+            Vector3 pos = new Vector3(lineOfSightPoints[i].x, lineOfSightPoints[i].y, -1f);
+            lineRenderer.SetPosition(i + 1, pos);
         }
     }
 

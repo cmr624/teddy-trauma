@@ -11,15 +11,17 @@ public class Pit : EnvironmentalObject {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
 
     protected override void ActOnMovableObject(MovableObject obj)
     {
+        if (obj.tag == "Player") { 
         if (gameOver == false)
         {
             Instantiate(gameOverScreen);
             Time.timeScale = 0f;
         }
+    }
     }
 }
