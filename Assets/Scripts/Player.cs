@@ -6,9 +6,9 @@ public class Player : MovableObject {
 
     public bool Detectable { get; private set; }
 
-	protected override void Start ()
+	protected override void Awake ()
     {
-        base.Start();
+        base.Awake();
 	}
 
     private Vector2 lastFrameInput;

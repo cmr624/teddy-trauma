@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//Change me daddy
-public class Lever : EnvironmentalObject {
+public class Lever : InteractiveObject {
 
     public bool Pulled { get; private set; }
 
     public LevelEvent onPulled;
     public LevelEvent onUnpulled;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     protected override void Update()
@@ -36,7 +35,7 @@ public class Lever : EnvironmentalObject {
         }
     }
 
-    protected override void ActOnMovableObject(MovableObject obj)
+    protected override void Interact()
     {
         TogglePulled();
     }

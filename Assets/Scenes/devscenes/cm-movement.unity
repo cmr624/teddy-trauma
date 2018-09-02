@@ -113,6 +113,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &97405412 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1526667632421406, guid: 75b94479cd7b6514bbcb53900c0dee35,
+    type: 2}
+  m_PrefabInternal: {fileID: 431802989}
+--- !u!114 &97405413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97405412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eb9aff9a560214290897e5b98658e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  angle: 45
+  samplesPerDegree: 5
+  initialPauseTime: 0.5
+  pickupDistance: 1
+  dropOffPoint: {x: 0, y: 0}
 --- !u!1001 &246495731
 Prefab:
   m_ObjectHideFlags: 0
@@ -151,6 +173,10 @@ Prefab:
     - target: {fileID: 4799080120465756, guid: dae3c4dff7840b148add05ff8d2f5e62, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280405756299086, guid: dae3c4dff7840b148add05ff8d2f5e62, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae3c4dff7840b148add05ff8d2f5e62, type: 2}
@@ -236,21 +262,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114339260953999840, guid: 75b94479cd7b6514bbcb53900c0dee35,
+    - target: {fileID: 114978508776740246, guid: 75b94479cd7b6514bbcb53900c0dee35,
         type: 2}
       propertyPath: range
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114339260953999840, guid: 75b94479cd7b6514bbcb53900c0dee35,
+    - target: {fileID: 114978508776740246, guid: 75b94479cd7b6514bbcb53900c0dee35,
         type: 2}
       propertyPath: samplesPerDegree
-      value: 0.2
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1526667632421406, guid: 75b94479cd7b6514bbcb53900c0dee35, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114978508776740246, guid: 75b94479cd7b6514bbcb53900c0dee35, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 75b94479cd7b6514bbcb53900c0dee35, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &484813201
@@ -291,6 +314,10 @@ Prefab:
     - target: {fileID: 4018257664090804, guid: 4ae77ba27a447114d8ab9283692290e4, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089857651484294, guid: 4ae77ba27a447114d8ab9283692290e4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ae77ba27a447114d8ab9283692290e4, type: 2}
@@ -463,8 +490,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114339260953999840, guid: 75b94479cd7b6514bbcb53900c0dee35,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: range
       value: 3
       objectReference: {fileID: 0}
@@ -507,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1587599711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -579,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   path: []
+  interactKey: 32
   onPulled:
     m_PersistentCalls:
       m_Calls:
@@ -592,6 +619,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: LevelEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onUnpulled:
@@ -607,6 +645,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: LevelEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!50 &1587599714

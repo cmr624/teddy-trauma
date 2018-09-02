@@ -1,28 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PathableObject : MovableObject {
 
     public Vector2[] path;
 
-    private bool willMove;
+    public override bool Frozen
+    {
+        get
+        {
+            return base.Frozen;
+        }
+
+        set
+        {
+            base.Frozen = value;
+
+            StopPatrolLeg();
+        }
+    }
+
+    private bool canPatrol;
     private int pathIndex;
 
     private Vector2 pathableFrameInput;
 
-    protected override void Start ()
+    protected override void Awake ()
     {
-        base.Start();
+        base.Awake();
         if (path.Length > 0)
         {
             transform.position = path[0];
             if (path.Length > 1)
             {
-                willMove = true;
+                canPatrol = true;
                 pathIndex = 1;
 
-                pathableFrameInput = MoveTowards(path[1]);
+                StartPatrolLeg();
             }
         }
     }
@@ -31,14 +44,29 @@ public class PathableObject : MovableObject {
     {
         base.Update();
 
-        if (willMove && Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
+        if (canPatrol && Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
         {
             pathIndex = (pathIndex + 1) % path.Length;
 
-            MoveInDirection(-1 * pathableFrameInput);
-
-            pathableFrameInput = MoveTowards(path[pathIndex]);
-            
+            StartPatrolLeg();
         }
+    }
+
+    public void StartPatrolLeg()
+    {
+        StopPatrolLeg();
+
+        if (path != null && canPatrol)
+        {
+            pathableFrameInput = MoveTowards(path[pathIndex]);
+            Debug.Log("Start Patrol to :" + pathableFrameInput);
+        }
+    }
+
+    public void StopPatrolLeg()
+    {
+        Debug.Log("Stopping patrol " + pathableFrameInput);
+        MoveInDirection(-1 * pathableFrameInput);
+        pathableFrameInput = Vector2.zero;
     }
 }

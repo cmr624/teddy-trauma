@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyLineOfSight : MonoBehaviour {
 
     private bool playerSeen;
+
     public float range = 1f;
     [Range(0f, 180f)]
     public float angle = 45f;
@@ -13,15 +14,26 @@ public class EnemyLineOfSight : MonoBehaviour {
 
     private LineRenderer lineRenderer;
 
-    private void Start()
+    private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-
         DrawLineOfSight();
+    }
+
+
+    //Needs juice 
+    private void OnEnable()
+    {
+        lineRenderer.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        lineRenderer.enabled = false;
     }
 
     void DrawLineOfSight()
@@ -57,13 +69,11 @@ public class EnemyLineOfSight : MonoBehaviour {
                 if(hitInfo.collider.GetComponent<Player>() != null)
                 {
 
-                    Debug.Log("I can see the player!!!");
                     if(hitInfo.collider.GetComponent<Player>().Detectable == false)
                     {
+                        OnUndetectableSeen(hitInfo.collider.GetComponent<Player>());
                         continue;
                     }
-                    //hitInfo.collider.GetComponent<Player>()
-
 
                     //point for juice
                     
@@ -80,5 +90,10 @@ public class EnemyLineOfSight : MonoBehaviour {
         }
 
         return points;
+    }
+
+    public virtual void OnUndetectableSeen(Player player)
+    {
+        //blank
     }
 }
