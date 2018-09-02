@@ -12,8 +12,8 @@ public class DoorCheck : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// LateUpdate is called once per frame
+	void LateUpdate () {
 		
 	}
 
