@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
     public KeyCode restartButton = KeyCode.R;
     public static LevelManager Instance { get; private set; }
+    public Canvas gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +23,13 @@ public class LevelManager : MonoBehaviour {
 
     public void GameOver()
     {
+        Instantiate(gameOver);
         Time.timeScale = 0f;
         // Nina puts up a screen here
         // Press "R" to restart
-        StartCoroutine(ListenForRestart());
+
+        Debug.Log("yo");
+        //StartCoroutine(ListenForRestart());
     }
     IEnumerator ListenForRestart()
     {
@@ -39,4 +44,5 @@ public class LevelManager : MonoBehaviour {
             yield return null;
         }
     }
+   
 }
