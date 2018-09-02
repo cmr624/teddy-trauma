@@ -12,8 +12,8 @@ public class DoorCheck : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// LateUpdate is called once per frame
+	void LateUpdate () {
 		
 	}
 
@@ -33,6 +33,10 @@ public class DoorCheck : MonoBehaviour {
                 {
                     Debug.Log("LOCKED");
                 }
+            }
+            else{
+                SceneManager.LoadScene(NextLevelName);
+                Debug.Log("UNLOCKED");
             }
         }
     }

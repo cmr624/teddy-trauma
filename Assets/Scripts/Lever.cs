@@ -5,19 +5,38 @@ using UnityEngine.Events;
 
 public class Lever : InteractiveObject {
 
+    private SpriteRenderer renderer;
+
     public bool Pulled { get; private set; }
 
     public LevelEvent onPulled;
     public LevelEvent onUnpulled;
+
+    public Sprite switchOnSprite;
+    public Sprite switchOffSprite;
+
+    public void interactWithSwitch(){
+        Interact();
+    }
+
+    public void switchOn(){
+        renderer = gameObject.GetComponent<SpriteRenderer>();
+        renderer.sprite = switchOnSprite;
+    }
+    public void switchOff()
+    {
+        renderer = gameObject.GetComponent<SpriteRenderer>();
+        renderer.sprite = switchOffSprite;
+    }
 
     protected override void Awake()
     {
         base.Awake();
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
     }
 
     void TogglePulled()

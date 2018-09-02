@@ -14,8 +14,8 @@ public class MainMenu : MonoBehaviour {
         startGame.onClick.AddListener(startGamePressed);
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// LateUpdate is called once per frame
+	void LateUpdate () {
 		
 	}
 

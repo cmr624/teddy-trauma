@@ -12,17 +12,25 @@ public class Player : MovableObject {
 	}
 
     private Vector2 lastFrameInput;
-	protected override void Update()
+	protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
 
-        MoveInDirection(-1 * lastFrameInput);
 
         Vector2 frameInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        //Stealth
         Detectable = frameInput.magnitude != 0;
 
-        MoveInDirection(frameInput);
+        bool wasConstrained;
+        frameInput = MoveInDirection(frameInput, out wasConstrained);
+
+        if (wasConstrained == false)
+        {
+            MoveInDirection(-1 * lastFrameInput);
+        }
+
         lastFrameInput = frameInput;
+        Debug.Log("This frame: " + lastFrameInput);
 	}
 }

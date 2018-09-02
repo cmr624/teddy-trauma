@@ -2,21 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(PathableObject))]
 public class Janitor : EnemyLineOfSight {
 
     [Header("Janitor Options")]
     public float coolDown = 2f;
     public float initialPauseTime = 0.5f;
-    public float pickupDistance = 1f;
+    public float pickupDistance = 2f;
     public Vector2 dropOffPoint;
 
     private bool undetectableSeen;
     private PathableObject pathable;
+    private EnemyRotate rotate;
 
     public void Start()
     {
-        pathable = GetComponent<PathableObject>();
+        pathable = GetComponentInParent<PathableObject>();
+        rotate = GetComponent<EnemyRotate>();
     }
 
     public override void OnUndetectableSeen(Player player)
@@ -32,6 +33,7 @@ public class Janitor : EnemyLineOfSight {
     IEnumerator TravelToPlayer(Player player)
     {
         pathable.Frozen = true;
+        rotate.RotateTowards(player.transform.position);
 
         yield return new WaitForSeconds(initialPauseTime);
 
@@ -47,25 +49,26 @@ public class Janitor : EnemyLineOfSight {
 
     IEnumerator PickUp(Player player)
     {
-        Transform originalPlayerParent = player.transform.parent;
-        player.transform.parent = transform;
+
         player.Frozen = true;
+        
 
         pathable.Frozen = false;
+
+        rotate.RotateTowards(dropOffPoint);
 
         Vector2 pickUpVector = pathable.MoveTowards(dropOffPoint);
 
         yield return WaitForReachPosition(dropOffPoint, pickupDistance, () =>
         {
-            player.transform.localPosition = Vector3.zero;
+            player.transform.position = transform.position;
         });
 
-        player.transform.parent = originalPlayerParent;
         player.Frozen = false;
 
         pathable.MoveInDirection(-1f * pickUpVector);
 
-        pathable.StartPatrolLeg();
+        pathable.Patrol();
 
         yield return new WaitForSeconds(coolDown);
 

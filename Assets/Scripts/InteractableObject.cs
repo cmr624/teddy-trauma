@@ -11,9 +11,9 @@ public abstract class InteractiveObject : EnvironmentalObject {
         base.Awake();
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
