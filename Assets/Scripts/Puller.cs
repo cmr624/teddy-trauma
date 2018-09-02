@@ -58,7 +58,12 @@ public class Puller : EnvironmentalObject
 
         pullerFrameInput = obj.MoveTowards(realisedEndPoint, pullSpeed);
     }
-    public void reverse(){
-        pullSpeed = -pullSpeed;
+    public void reverse1(){
+        endPoint=new Vector2(5.767434f,1.49f);
     }
+    public void reverse2()
+    {
+        endPoint =new Vector2(6.2f,1.2f);
+    }
+
 }

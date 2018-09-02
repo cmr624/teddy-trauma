@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50251643679218162}
   - component: {fileID: 114272049447428684}
   - component: {fileID: 61610826596424452}
+  - component: {fileID: 95433796099824730}
   m_Layer: 0
   m_Name: EnemyRotation
   m_TagString: Untagged
@@ -119,6 +120,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95433796099824730
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1421662876771860}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1097f5c9376d35b47b26174af1018f76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114272049447428684
 MonoBehaviour:
   m_ObjectHideFlags: 1
