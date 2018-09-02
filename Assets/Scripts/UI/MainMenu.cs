@@ -20,6 +20,6 @@ public class MainMenu : MonoBehaviour {
 	}
 
     void startGamePressed(){ //LOADS LEVEL ONE
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("1-1");
     }
 }

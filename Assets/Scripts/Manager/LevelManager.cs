@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
         // Press "R" to restart
 
         Debug.Log("yo");
-        //StartCoroutine(ListenForRestart());
+        StartCoroutine(ListenForRestart());
     }
     IEnumerator ListenForRestart()
     {

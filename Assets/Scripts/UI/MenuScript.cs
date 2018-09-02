@@ -9,6 +9,10 @@ public class MenuScript : MonoBehaviour {
     public Button restartLevel;
     public Button quitButton;
     public GameObject menuPopup;
+    public Image key;
+    GameObject player;
+
+    
 
     bool menuUp = false;
 
@@ -17,7 +21,19 @@ public class MenuScript : MonoBehaviour {
         menuButton.onClick.AddListener(menuPressed);
         restartLevel.onClick.AddListener(restartPressed);
         quitButton.onClick.AddListener(quitPressed);
+        player = GameObject.FindGameObjectWithTag("Player");
+
 	}
+
+    void Update()
+    {
+        if (player.GetComponent<PickUp>().hasKey){
+            key.enabled = true;
+        }
+        else{
+            key.enabled = false;
+        }
+    }
 
     void menuPressed(){ //pull the menu up if it wasn't up already
         if(menuUp){
