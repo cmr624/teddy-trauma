@@ -124,8 +124,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313363304771136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.61, y: 1.86, z: 0.06384035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 11.45, y: -11.51, z: 0.06384035}
+  m_LocalScale: {x: 1.7204591, y: 2.0125, z: 1}
   m_Children:
   - {fileID: 224231699293441194}
   - {fileID: 224989943562877256}
@@ -202,11 +202,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c67c0d79c91a44b32ac0c5341cc24aea, type: 3}
-    m_FontSize: 73
+    m_FontSize: 119
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 119
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -251,11 +251,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c67c0d79c91a44b32ac0c5341cc24aea, type: 3}
-    m_FontSize: 73
+    m_FontSize: 96
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1

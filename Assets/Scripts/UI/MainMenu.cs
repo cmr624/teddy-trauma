@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour {
         startGame.onClick.AddListener(startGamePressed);
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// LateUpdate is called once per frame
+	void LateUpdate () {
 		
 	}
 
     void startGamePressed(){ //LOADS LEVEL ONE
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("1-1");
     }
 }
