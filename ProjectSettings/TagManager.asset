@@ -16,8 +16,8 @@ TagManager:
   - 
   - 
   - Enemy
-  - Seeable
-  - 
+  - BlockLOS
+  - Player
   - 
   - 
   - 

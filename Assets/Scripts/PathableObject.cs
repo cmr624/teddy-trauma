@@ -4,20 +4,6 @@ public class PathableObject : MovableObject {
 
     public Vector2[] path;
 
-    public override bool Frozen
-    {
-        get
-        {
-            return base.Frozen;
-        }
-
-        set
-        {
-            base.Frozen = value;
-
-            Stop();
-        }
-    }
 
     public Vector2? TargetPosition
     {
@@ -54,7 +40,7 @@ public class PathableObject : MovableObject {
                 canPatrol = true;
                 pathIndex = 1;
 
-                StartPatrolLeg();
+                Patrol();
             }
         }
     }
@@ -63,9 +49,9 @@ public class PathableObject : MovableObject {
     {
         base.LateUpdate();
 
-        if (canPatrol)
+        if (canPatrol )
         {
-            StartPatrolLeg();
+            Patrol();
 
             if (Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
             {
@@ -74,19 +60,21 @@ public class PathableObject : MovableObject {
         }
     }
 
-    public void StartPatrolLeg()
+    public void Patrol()
     {
-        Stop();
-
-        if(rotate != null)
+        if(Frozen == false)
         {
-            rotate.RotateTowards(path[pathIndex]);
-        }
+            Stop();
 
-        if (path != null && canPatrol)
-        {
-            pathableFrameInput = MoveTowards(path[pathIndex]);
-            Debug.Log("Start Patrol to :" + pathableFrameInput);
+            if (rotate != null)
+            {
+                rotate.RotateTowards(path[pathIndex]);
+            }
+
+            if (path != null && canPatrol)
+            {
+                pathableFrameInput = MoveTowards(path[pathIndex]);
+            }
         }
     }
 

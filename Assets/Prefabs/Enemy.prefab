@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f451584b627166438f815d044c0404c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectedByPullers: 1
   speed: 2
   path:
   - {x: -5, y: -5}
