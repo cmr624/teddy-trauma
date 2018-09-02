@@ -10,17 +10,19 @@ public abstract class EnvironmentalObject : PathableObject {
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<MovableObject>() != null)
+        MovableObject mo = collision.gameObject.GetComponent<MovableObject>();
+        if (mo != null && mo.affectedByPullers)
         {
-            movables.Add(collision.gameObject.GetComponent<MovableObject>());
+            movables.Add(mo);
         }
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<MovableObject>() != null)
+        MovableObject mo = collision.gameObject.GetComponent<MovableObject>();
+        if (mo != null && mo.affectedByPullers)
         {
-            movables.Remove(collision.gameObject.GetComponent<MovableObject>());
+            movables.Remove(mo);
         }
     }
 
@@ -31,9 +33,9 @@ public abstract class EnvironmentalObject : PathableObject {
         movables = new List<MovableObject>();
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
 
         foreach(MovableObject mo in movables)
         {

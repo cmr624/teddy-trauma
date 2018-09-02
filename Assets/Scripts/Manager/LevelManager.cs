@@ -16,8 +16,8 @@ public class LevelManager : MonoBehaviour {
         Time.timeScale = 1f;
     }
 	
-	// Update is called once per frame
-	void Update () {
+	// LateUpdate is called once per frame
+	void LateUpdate () {
 		
 	}
 

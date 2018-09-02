@@ -15,9 +15,9 @@ public class Lever : InteractiveObject {
         base.Awake();
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
     }
 
     void TogglePulled()

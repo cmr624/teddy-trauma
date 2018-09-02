@@ -28,7 +28,7 @@ public class DialogueManagement : MonoBehaviour {
         coroutine = delayedSpeech(contents);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if(talkingEnabled){
             if (Input.GetKeyDown(KeyCode.Space))
