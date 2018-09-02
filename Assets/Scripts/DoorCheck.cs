@@ -34,6 +34,10 @@ public class DoorCheck : MonoBehaviour {
                     Debug.Log("LOCKED");
                 }
             }
+            else{
+                SceneManager.LoadScene(NextLevelName);
+                Debug.Log("UNLOCKED");
+            }
         }
     }
 }
