@@ -16,10 +16,12 @@ public class gameOverCanvas : MonoBehaviour {
 	}
 
     void retryPressed(){
+        Debug.Log("why");
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
     void quitPressed(){
+        Debug.Log("quit");
         SceneManager.LoadScene("MainMenu");
 
     }
