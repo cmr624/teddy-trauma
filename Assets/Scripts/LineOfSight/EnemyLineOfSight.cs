@@ -24,8 +24,6 @@ public class EnemyLineOfSight : MonoBehaviour {
         DrawLineOfSight();
     }
 
-
-    //Needs juice 
     private void OnEnable()
     {
         lineRenderer.enabled = true;
@@ -60,7 +58,7 @@ public class EnemyLineOfSight : MonoBehaviour {
         {
             float rad = Mathf.Deg2Rad * (i / totalSamples) * angle - Mathf.Deg2Rad * angle / 2;
 
-            RaycastHit2D hitInfo = Physics2D.Raycast(center, (transform.right * Mathf.Sin(rad) * range) + (transform.up * Mathf.Cos(rad) * range), range);
+            RaycastHit2D hitInfo = Physics2D.Raycast(center, (transform.right * Mathf.Sin(rad) * range) + (transform.up * Mathf.Cos(rad) * range), range, (1 << LayerMask.NameToLayer("Seeable")));
 
             if(hitInfo.collider != null)
             {

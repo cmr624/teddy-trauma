@@ -15,7 +15,21 @@ public class PathableObject : MovableObject {
         {
             base.Frozen = value;
 
-            StopPatrolLeg();
+            Stop();
+        }
+    }
+
+    public Vector2? TargetPosition
+    {
+        get
+        {
+            if(path != null && pathIndex < path.Length)
+            {
+                return path[pathIndex];
+            } else
+            {
+                return null;
+            }
         }
     }
 
@@ -24,9 +38,14 @@ public class PathableObject : MovableObject {
 
     private Vector2 pathableFrameInput;
 
+    private EnemyRotate rotate;
+
     protected override void Awake ()
     {
         base.Awake();
+
+        rotate = GetComponentInChildren<EnemyRotate>();
+
         if (path.Length > 0)
         {
             transform.position = path[0];
@@ -40,21 +59,29 @@ public class PathableObject : MovableObject {
         }
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
-        base.Update();
+        base.LateUpdate();
 
-        if (canPatrol && Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
+        if (canPatrol)
         {
-            pathIndex = (pathIndex + 1) % path.Length;
-
             StartPatrolLeg();
+
+            if (Vector2.Distance(transform.position, path[pathIndex]) < 0.05f)
+            {
+                pathIndex = (pathIndex + 1) % path.Length;
+            }
         }
     }
 
     public void StartPatrolLeg()
     {
-        StopPatrolLeg();
+        Stop();
+
+        if(rotate != null)
+        {
+            rotate.RotateTowards(path[pathIndex]);
+        }
 
         if (path != null && canPatrol)
         {
@@ -63,7 +90,7 @@ public class PathableObject : MovableObject {
         }
     }
 
-    public void StopPatrolLeg()
+    public void Stop()
     {
         Debug.Log("Stopping patrol " + pathableFrameInput);
         MoveInDirection(-1 * pathableFrameInput);
